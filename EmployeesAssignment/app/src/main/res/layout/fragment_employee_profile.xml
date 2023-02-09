@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_theme_light_secondary"
+    tools:context=".employeelist.EmployeeProfileFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <View
+            android:id="@+id/employee_profile_bg"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/card_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_employee_profile_name"
+            android:layout_marginTop="-50dp"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/tv_employee_profile_hourly_pay"
+            style="@style/employeeDetails"
+            android:text="Hourly Pay"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/tv_employee_profile_education"
+            app:layout_constraintTop_toBottomOf="@+id/tv_employee_profile_education"
+            app:layout_constraintVertical_bias="0.556" />
+
+        <TextView
+            android:id="@+id/tv_employee_profile_fields_of_expertise"
+            style="@style/employeeDetails"
+            android:gravity="center_vertical"
+            android:text="Fields Of Expertise"
+            app:layout_constraintBottom_toTopOf="@+id/tv_employee_profile_address"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.015"
+            app:layout_constraintStart_toStartOf="@+id/tv_employee_profile_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_employee_profile_name"
+            app:layout_constraintVertical_bias="0.083" />
+
+        <TextView
+            android:id="@+id/tv_employee_profile_address"
+            style="@style/employeeDetails"
+            android:gravity="center_vertical"
+            android:text="Address"
+            app:layout_constraintBottom_toTopOf="@+id/tv_employee_profile_employment_rate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/tv_employee_profile_fields_of_expertise"
+            app:layout_constraintTop_toBottomOf="@+id/tv_employee_profile_fields_of_expertise"
+            app:layout_constraintVertical_bias="0.098" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_employee_profile_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+            android:layout_centerHorizontal="true"
+            app:layout_constraintBottom_toTopOf="@+id/employee_profile_bg"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.081"
+            app:layout_constraintWidth_percent="0.5" />
+
+        <TextView
+            android:id="@+id/tv_employee_profile_employment_rate"
+            style="@style/employeeDetails"
+            android:text="Employment Rate"
+            app:layout_constraintBottom_toTopOf="@+id/tv_employee_profile_education"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/tv_employee_profile_address"
+            app:layout_constraintTop_toBottomOf="@+id/tv_employee_profile_address"
+            app:layout_constraintVertical_bias="0.138" />
+
+        <TextView
+            android:id="@+id/tv_employee_profile_education"
+            android:text="Education"
+            style="@style/employeeDetails"
+            app:layout_constraintBottom_toTopOf="@+id/tv_employee_profile_hourly_pay"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/tv_employee_profile_employment_rate"
+            app:layout_constraintTop_toBottomOf="@+id/tv_employee_profile_employment_rate"
+            app:layout_constraintVertical_bias="0.19" />
+
+        <TextView
+            android:id="@+id/tv_employee_profile_name"
+            style="@style/employeeDetails"
+            android:gravity="center_vertical"
+            android:text="Employee Name"
+            app:layout_constraintBottom_toTopOf="@+id/tv_employee_profile_fields_of_expertise"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.181"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_employee_profile_image"
+            app:layout_constraintVertical_bias="0.103" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

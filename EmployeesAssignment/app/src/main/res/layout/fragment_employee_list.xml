@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".employeelist.EmployeeListFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".employeelist.EmployeeListFragment">
+
+        <SearchView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/employeesListSearchView"
+            android:iconifiedByDefault="false"
+            android:queryHint="Employee Name"></SearchView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/filterTabsLayout">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/add_emp_sp_expertise"
+                android:textSize="25sp"
+                android:hint="Filter By Expertise"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/sortTabsLayout2">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="Rate"
+                android:id="@+id/btn_sort_employment_rate"
+                style="?android:attr/buttonBarButtonStyle" />
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="Salary"
+                android:id="@+id/btn_sort_by_hourly_pay"
+                style="?android:attr/buttonBarButtonStyle" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="Name"
+                android:id="@+id/btn_sort_by_name"
+                style="?android:attr/buttonBarButtonStyle" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/rv_employees_list"/>
+
+    </LinearLayout>
+
+</FrameLayout>

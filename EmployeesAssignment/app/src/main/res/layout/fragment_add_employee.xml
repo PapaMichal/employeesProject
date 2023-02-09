@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".addemployee.AddEmployee"
+    android:background="@color/md_theme_light_primary"
+    android:name="androidx.navigation.fragment.NavHostFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toTopOf="@+id/add_emp_tv_title"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <!--<View
+            android:id="@+id/add_emp_fields_bg"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/card_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guideline3"
+            app:layout_constraintVertical_bias="1.0" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/add_emp_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Add An Employee"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+            android:textColor="@color/md_theme_light_onPrimary"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/guideline3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/add_emp_tv_title"
+            app:layout_constraintBottom_toTopOf="@+id/add_emp_ti_full_name"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:orientation="horizontal" />!-->
+
+        <!--Segment start-->
+
+
+        <View
+            android:id="@+id/add_emp_fields_bg"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/card_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guideline3"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/add_emp_ti_full_name"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!--Segment End-->
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/add_emp_ti_full_name"
+            style="@style/InputTextAppearance"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Name"
+            app:layout_constraintBottom_toTopOf="@+id/add_emp_ti_address"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/guideline3"
+            app:layout_constraintWidth_percent="0.9"
+            app:startIconDrawable="@drawable/ic_person30dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/add_emp_et_full_name"
+                style="@style/EditTextTextAppearance"
+                android:inputType="textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/add_emp_ti_address"
+            style="@style/InputTextAppearance"
+            android:hint="Address"
+            app:layout_constraintBottom_toTopOf="@+id/add_emp_ti_education"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_emp_ti_full_name"
+            app:startIconDrawable="@drawable/ic_location30dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/add_emp_et_address"
+                style="@style/EditTextTextAppearance" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/add_emp_ti_education"
+            style="@style/InputTextAppearance"
+            android:hint="Education"
+            app:layout_constraintBottom_toTopOf="@+id/add_emp_ti_hourly_pay"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_emp_ti_address"
+            app:startIconDrawable="@drawable/ic_education30dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/add_emp_et_education"
+                style="@style/EditTextTextAppearance"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/add_emp_ti_hourly_pay"
+            style="@style/InputTextAppearance"
+            android:hint="Hourly Pay"
+            app:layout_constraintBottom_toTopOf="@+id/add_emp_sp_expertise"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_emp_ti_education"
+            app:startIconDrawable="@drawable/ic_coins30dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/add_emp_et_hourly_pay"
+                style="@style/EditTextTextAppearance"
+                android:inputType="numberSigned" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/add_emp_sp_expertise"
+            style="@style/SpinnerAppearance"
+            android:drawableStart="@drawable/ic_expertise30dp"
+            android:drawableTint="@color/md_theme_light_outline"
+            android:hint="Select Fields Of Expertise"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/add_emp_sp_employment_rate"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_emp_ti_hourly_pay"
+            app:layout_constraintWidth_percent="0.9" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/add_emp_sp_employment_rate"
+            style="@style/SpinnerAppearance"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/editbox_background"
+            android:drawableStart="@drawable/ic_percent30dp"
+            android:drawableTint="@color/md_theme_light_outline"
+            android:hint="Employment Rate"
+            app:layout_constraintBottom_toTopOf="@id/add_emp_image_btn"
+            app:layout_constraintHorizontal_bias="0.512"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_emp_sp_expertise"
+            app:layout_constraintWidth_percent="0.9" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/add_emp_image_btn"
+            style="@style/submit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@android:drawable/ic_menu_gallery"
+            android:text="Upload image"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toTopOf="@id/add_emp_btn_submit"
+            app:layout_constraintHorizontal_bias="0.102"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_emp_sp_employment_rate"
+            app:layout_constraintWidth_percent="0.5" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/add_emp_btn_submit"
+            style="@style/submit_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Add"
+            android:backgroundTint="@color/md_theme_light_secondary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/add_emp_image_btn"
+            app:layout_constraintVertical_bias="1.0"
+            app:layout_constraintWidth_percent="0.5" />
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/add_emp_iv_image"
+            app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toTopOf="@+id/add_emp_btn_submit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/add_emp_image_btn"
+            app:layout_constraintTop_toBottomOf="@+id/add_emp_sp_employment_rate"
+            tools:src="@tools:sample/avatars" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

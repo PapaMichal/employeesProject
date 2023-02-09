@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/AndroidStudioProjects/EmployeesAssignment/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1815" />
+        <entry key="..\:/AndroidStudioProjects/EmployeesAssignment/app/src/main/res/drawable/bg_sp_expertise.xml" value="0.2315" />
+        <entry key="..\:/AndroidStudioProjects/EmployeesAssignment/app/src/main/res/drawable/bg_sp_hourly_rate.xml" value="0.2315" />
+        <entry key="..\:/AndroidStudioProjects/EmployeesAssignment/app/src/main/res/drawable/bg_spinner.xml" value="0.2315" />
+        <entry key="..\:/AndroidStudioProjects/EmployeesAssignment/app/src/main/res/drawable/button_background.xml" value="0.261" />
+        <entry key="..\:/AndroidStudioProjects/EmployeesAssignment/app/src/main/res/drawable/card_background.xml" value="0.2315" />
+        <entry key="..\:/AndroidStudioProjects/EmployeesAssignment/app/src/main/res/drawable/coins_padding.xml" value="0.2315" />
+        <entry key="..\:/AndroidStudioProjects/EmployeesAssignment/app/src/main/res/drawable/edit_text_background.xml" value="0.196" />
+        <entry key="..\:/AndroidStudioProjects/EmployeesAssignment/app/src/main/res/drawable/et_background.xml" value="0.2985" />
+        <entry key="..\:/AndroidStudioProjects/EmployeesAssignment/app/src/main/res/drawable/hourly_pay_padding.xml" value="0.2315" />
+        <entry key="..\:/AndroidStudioProjects/EmployeesAssignment/app/src/main/res/drawable/ic_exit_to_app_black_24dp.xml" value="0.261" />
+        <entry key="..\:/AndroidStudioProjects/EmployeesAssignment/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1815" />
+        <entry key="..\:/AndroidStudioProjects/EmployeesAssignment/app/src/main/res/drawable/image_click.xml" value="0.1335" />
+        <entry key="..\:/AndroidStudioProjects/EmployeesAssignment/app/src/main/res/drawable/input_fields_divider.xml" value="0.201" />
+        <entry key="..\:/AndroidStudioProjects/EmployeesAssignment/app/src/main/res/drawable/profile_pic_circle_frame.xml" value="0.2625" />
+        <entry key="..\:/AndroidStudioProjects/EmployeesAssignment/app/src/main/res/drawable/side_nav_bar.xml" value="0.196" />
+        <entry key="..\:/AndroidStudioProjects/EmployeesAssignment/app/src/main/res/drawable/submit_btn_background.xml" value="0.2985" />
+        <entry key="..\:/AndroidStudioProjects/EmployeesAssignment/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/EmployeesAssignment/app/src/main/res/layout/app_bar_main.xml" value="0.44300278035217794" />
+        <entry key="..\:/AndroidStudioProjects/EmployeesAssignment/app/src/main/res/layout/content_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/EmployeesAssignment/app/src/main/res/layout/employee_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/EmployeesAssignment/app/src/main/res/layout/fragment_add_employee.xml" value="0.3224043715846995" />
+        <entry key="..\:/AndroidStudioProjects/EmployeesAssignment/app/src/main/res/layout/fragment_employee_list.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/EmployeesAssignment/app/src/main/res/layout/fragment_employee_profile.xml" value="0.33" />
+        <entry key="..\:/AndroidStudioProjects/EmployeesAssignment/app/src/main/res/layout/fragment_employees_list.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/EmployeesAssignment/app/src/main/res/layout/fragment_login.xml" value="0.24320652173913043" />
+        <entry key="..\:/AndroidStudioProjects/EmployeesAssignment/app/src/main/res/layout/fragment_register.xml" value="0.24320652173913043" />
+        <entry key="..\:/AndroidStudioProjects/EmployeesAssignment/app/src/main/res/layout/fragment_scrolling.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/EmployeesAssignment/app/src/main/res/layout/fragment_settings.xml" value="0.33" />
+        <entry key="..\:/AndroidStudioProjects/EmployeesAssignment/app/src/main/res/layout/nav_header_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/EmployeesAssignment/app/src/main/res/menu/activity_main_drawer.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/EmployeesAssignment/app/src/main/res/menu/main.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/EmployeesAssignment/app/src/main/res/xml/root_preferences.xml" value="0.36666666666666664" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
