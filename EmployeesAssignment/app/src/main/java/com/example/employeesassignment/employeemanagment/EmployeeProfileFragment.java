@@ -1,12 +1,8 @@
-package com.example.employeesassignment.employeelist;
-
+package com.example.employeesassignment.employeemanagment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-
 import androidx.fragment.app.Fragment;
 
 import com.example.employeesassignment.Employee;
@@ -19,10 +15,6 @@ public class EmployeeProfileFragment extends Fragment {
     private FragmentEmployeeProfileBinding binding;
 
     public EmployeeProfileFragment() {
-    }
-    public static EmployeeProfileFragment newInstance(String param1, String param2) {
-        EmployeeProfileFragment fragment = new EmployeeProfileFragment();
-        return fragment;
     }
 
     @Override
@@ -38,16 +30,20 @@ public class EmployeeProfileFragment extends Fragment {
         Bundle arguments = getArguments();
         if (!arguments.isEmpty()) {
             selectedEmployee = EmployeeProfileFragmentArgs.fromBundle(getArguments()).getEmployee();
-            binding.tvEmployeeProfileName.setText("Name: " + selectedEmployee.getName());
-            binding.tvEmployeeProfileAddress.setText("Address: " + selectedEmployee.getAddress());
-            binding.tvEmployeeProfileEducation.setText("Education: " + selectedEmployee.getEducation());
-            binding.tvEmployeeProfileEmploymentRate.setText("Employment Rate: " + Integer.toString(selectedEmployee.getEmploymentRate()));
-            binding.tvEmployeeProfileFieldsOfExpertise.setText("Fields Of Expertise: " + selectedEmployee.getFieldsOfExpertiseAsString());
-            binding.tvEmployeeProfileHourlyPay.setText("Hourly pay: " + Integer.toString(selectedEmployee.getHourlyPay()));
-            binding.ivEmployeeProfileImage.setImageBitmap(selectedEmployee.getPicture());
+            putEmployeeInfoOnDisplay();
         }
         getActivity().findViewById(R.id.toolbar).setBackgroundColor(getResources().getColor(R.color.md_theme_light_secondary));
         return view;
+    }
+
+    private void putEmployeeInfoOnDisplay() {
+        binding.tvEmployeeProfileName.setText("Name: " + selectedEmployee.getName());
+        binding.tvEmployeeProfileAddress.setText("Address: " + selectedEmployee.getAddress());
+        binding.tvEmployeeProfileEducation.setText("Education: " + selectedEmployee.getEducation());
+        binding.tvEmployeeProfileEmploymentRate.setText("Employment Rate: " + selectedEmployee.getEmploymentRate());
+        binding.tvEmployeeProfileFieldsOfExpertise.setText("Fields Of Expertise: " + selectedEmployee.getFieldsOfExpertiseAsString());
+        binding.tvEmployeeProfileHourlyPay.setText("Hourly pay: " + selectedEmployee.getHourlyPay());
+        binding.ivEmployeeProfileImage.setImageBitmap(selectedEmployee.getPicture());
     }
 
     @Override

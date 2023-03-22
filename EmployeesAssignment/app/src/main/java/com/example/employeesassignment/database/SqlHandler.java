@@ -14,6 +14,7 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 public class SqlHandler extends SQLiteOpenHelper {
+    private static SqlHandler instance;
     private static final String DATABASE_NAME = "database.db";
     private static final int DATABASE_VERSION = 1;
 
@@ -27,8 +28,6 @@ public class SqlHandler extends SQLiteOpenHelper {
     private static final String EMP_EMPLOYMENT_RATE = "employment_rate";
     private static final String EMPLOYEES_NAME = EMPLOYEES + ".name";
     private static final String EXPERTISE_FIELDS_NAME = EXPERTISE_FIELDS + ".fieldName";
-
-    private static SqlHandler instance;
 
     private SqlHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -124,7 +123,7 @@ public class SqlHandler extends SQLiteOpenHelper {
         db.execSQL(sql, new String[]{fieldName, employeeId});
     }
 
-    private void insertEmployeeExpertises(String employeeId, String[] fieldNames) {
+    private void insertEmployeeExpertises(String employeeId, ArrayList<String> fieldNames) {
         for (String fieldName: fieldNames) {
             insertEmployeeExpertise(employeeId, fieldName);
         }
@@ -138,7 +137,7 @@ public class SqlHandler extends SQLiteOpenHelper {
         }
     }
 
-    public static byte[] bitmapToBlob(Bitmap bitmap) {
+    private static byte[] bitmapToBlob(Bitmap bitmap) {
         if (bitmap == null){
             return null;
         }
@@ -173,7 +172,7 @@ public class SqlHandler extends SQLiteOpenHelper {
         return employees;
     }
 
-    public boolean addEmployee(String name, String address, String education, int hourlyPay, int employmentRate, String[] expertises, Bitmap picture) {
+    public boolean addEmployee(String name, String address, String education, int hourlyPay, int employmentRate, ArrayList<String> expertises, Bitmap picture) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("name", name);
@@ -218,7 +217,7 @@ public class SqlHandler extends SQLiteOpenHelper {
         return names.toArray(new String[0]);
     }
 
-    public ArrayList<String> getEmployeeFieldsOfExpertise(int employeeId) {
+    private ArrayList<String> getEmployeeFieldsOfExpertise(int employeeId) {
         SQLiteDatabase db = getWritableDatabase();
         String sql =
                 "SELECT fieldName\n" +
@@ -248,7 +247,7 @@ public class SqlHandler extends SQLiteOpenHelper {
         return this.getWritableDatabase().rawQuery(sql, null);
     }
 
-    public boolean doesExist(String selQuery) {
+    private boolean doesExist(String selQuery) {
         String sql = "SELECT EXISTS(" + selQuery + " LIMIT 1)";
         Cursor cursor = getData(sql);
         cursor.moveToFirst();
@@ -257,7 +256,7 @@ public class SqlHandler extends SQLiteOpenHelper {
         return doesASingleResultExist;
     }
 
-    public boolean doesExist(String table, String col, String val) {
+    private boolean doesExist(String table, String col, String val) {
         return doesExist("SELECT * FROM " + table + " WHERE " + col + "=" + "'" + val + "'");
     }
 

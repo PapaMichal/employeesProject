@@ -1,7 +1,5 @@
 package com.example.employeesassignment.userlogin;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -18,9 +16,7 @@ import com.example.employeesassignment.MainActivity;
 import com.example.employeesassignment.R;
 import com.example.employeesassignment.SessHelper;
 import com.example.employeesassignment.database.SqlHandler;
-import com.example.employeesassignment.databinding.FragmentAddEmployeeBinding;
 import com.example.employeesassignment.databinding.FragmentLoginBinding;
-import com.google.android.material.navigation.NavigationView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,12 +28,6 @@ public class Login extends Fragment {
     private EditText etLoginPass;
     private FragmentLoginBinding binding;
     public Login() {
-    }
-
-    public static final Login newInstance(int title, String message)
-    {
-        Login loginFragment = new Login();
-        return loginFragment;
     }
 
     @Override
@@ -59,13 +49,7 @@ public class Login extends Fragment {
         return true;
     }
 
-    private boolean checkAndPromptAllFields() {
-        boolean isUsernameValid = checkAndPromptField(etLoginUsername);
-        boolean isPasswordValid = checkAndPromptField(etLoginPass);
-        return isUsernameValid && isPasswordValid;
-    }
-
-    private class EmptyTextListener implements TextView.OnEditorActionListener {
+    private static class EmptyTextListener implements TextView.OnEditorActionListener {
         private final EditText et;
 
         public EmptyTextListener(EditText editText) {
@@ -81,6 +65,12 @@ public class Login extends Fragment {
         }
     }
 
+    private void setSessionInfoInNavDrawer(String username) {
+        SessHelper sessHelper = SessHelper.getInstance(getActivity());
+        sessHelper.login(username, SqlHandler.getInstance(binding.getRoot().getContext()).
+                getEmailByUsername(username));
+        ((MainActivity)(getActivity())).setNavHeaderUserAndEmail();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -98,36 +88,26 @@ public class Login extends Fragment {
         etLoginPass.setOnEditorActionListener(new EmptyTextListener(etLoginPass));
 
 
-        binding.btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String username = etLoginUsername.getText().toString();
-                String pass = etLoginPass.getText().toString();
-                if (checkAndPromptField(etLoginUsername))
-                {
-                    if (!db.doesUserExist(username))
-                        etLoginUsername.setError("Username doesn't exist.");
-                    else if (checkAndPromptField(etLoginPass) && db.isPasswordCorrect(username, pass)) {
-                        SessHelper sessHelper = SessHelper.getInstance(getActivity());
-                        sessHelper.login(username, db.getEmailByUsername(username));
-                        ((MainActivity)(getActivity())).setNavHeaderUserAndEmail();
-                        Navigation.findNavController(view).navigate(R.id.action_login_to_employeeList);
-                    } else {
-                        tvErrorPrompt.setText("Wrong password. Please try again.");
-                        etLoginPass.setText("");
-                    }
+        binding.btnLogin.setOnClickListener(view -> {
+            String username = binding.etLoginUsername.getText().toString();
+            String pass = binding.etLoginPass.getText().toString();
+            if (checkAndPromptField(etLoginUsername))
+            {
+                if (!db.doesUserExist(username))
+                    etLoginUsername.setError("Username doesn't exist.");
+                else if (checkAndPromptField(etLoginPass) && db.isPasswordCorrect(username, pass)) {
+                    setSessionInfoInNavDrawer(username);
+                    Navigation.findNavController(view).navigate(R.id.action_login_to_employeeList);
+                } else {
+                    tvErrorPrompt.setText("Wrong password. Please try again.");
+                    etLoginPass.setText("");
                 }
-                else
-                    checkAndPromptField(etLoginPass);
             }
+            else
+                checkAndPromptField(etLoginPass);
         });
 
-        binding.tvRegistrationReferer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_login_to_register);
-            }
-        });
+        binding.tvRegistrationReferer.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.action_login_to_register));
         return v;
     }
 

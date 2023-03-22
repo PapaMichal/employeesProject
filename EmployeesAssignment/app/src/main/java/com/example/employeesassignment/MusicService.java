@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Binder;
 import android.os.IBinder;
-import android.widget.Toast;
 
 
 public class MusicService extends Service {
@@ -13,7 +12,7 @@ public class MusicService extends Service {
     public MediaPlayer myPlayer;
     private float leftVolume, rightVolume;
 
-    private final IBinder binder = new LocalBinder();
+    private final LocalBinder binder = new LocalBinder();
     public class LocalBinder extends Binder {
         public MusicService getService() {
             return MusicService.this;

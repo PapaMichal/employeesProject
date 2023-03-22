@@ -1,0 +1,337 @@
+@startuml
+enum com.example.employeesassignment.InputPatterns {
++  USERNAME
++  PASSWORD
++  EMAIL
++  NAME
++  HOURLY_PAY
++  EDUCATION
++  ADDRESS
+- String name
+- int minLen
+- boolean isTooShort(String)
+- boolean isTooLong(String)
+- boolean isFormatValid(String)
++ boolean isValidInput(String)
++ boolean validateAndDisplay(EditText)
+}
+class com.example.employeesassignment.spinner.SortFilterMultiChoiceSpinnerListener {
+- FilterOnClick filterOnClick
++ boolean areAllFieldsChecked()
+- void fillItemsList()
+- void checkAllFields()
+# void positiveButtonAction(int)
+# void neutralButtonAction()
+}
+class com.example.employeesassignment.MainActivity {
+- AppBarConfiguration mAppBarConfiguration
+- ActivityMainBinding binding
+- NavController navController
+- NavigationView navView
+- NavOptions navOptions
+- MusicService boundService
+- boolean isBound
+- ServiceConnection mConnection
+# void onCreate(Bundle)
++ boolean onCreateOptionsMenu(Menu)
++ boolean onOptionsItemSelected(MenuItem)
++ boolean onSupportNavigateUp()
+~ void doBindService()
+~ void doUnbindService()
++ void setNavHeaderUserAndEmail()
+# void onDestroy()
+}
+class com.example.employeesassignment.SettingsFragment {
+~ MusicService musicService
+~ boolean isBound
+- ServiceConnection mConnection
+- FragmentSettingsBinding binding
++ void onCreate(Bundle)
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+~ void doBindService()
++ void onDestroy()
++ void onDestroyView()
+}
+class com.example.employeesassignment.userlogin.Register {
+- EditText etUsername
+- SqlHandler db
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+- boolean isUsernameTaken()
+- boolean isEmailTaken()
++ boolean isPasswordConfirmationValid()
+~ {static} boolean isTextViewEmpty(TextView)
+- boolean isAnyRequiredFieldEmpty()
+- boolean areAllFieldsValid()
++ void onCreate(Bundle)
+}
+class com.example.employeesassignment.userlogin.Register.AfterTextChangeValidator {
+- EditText et
++ void onTextChanged(CharSequence,int,int,int)
++ void beforeTextChanged(CharSequence,int,int,int)
++ void afterTextChanged(Editable)
+}
+class com.example.employeesassignment.userlogin.Register.EmptyTextListener {
+- EditText et
++ boolean onEditorAction(TextView,int,KeyEvent)
+}
+class com.example.employeesassignment.spinner.MultiSChoiceLSpinnerListener {
+# boolean[] selectedItems
+# ArrayList<String> chosenItemsList
+# String title
+# TextView tv
+# String[] itemsArr
+# AlertDialog.Builder alertDialog
+- String neutralBtnText
++ ArrayList<String> getChosenItemsList()
+# void setItem(int,boolean)
+# void positiveButtonAction(int)
+# void neutralButtonAction()
+- AlertDialog.Builder buildAlertDialog(Context)
++ void onClick(View)
+}
+class com.example.employeesassignment.employeemanagment.EmployeeAdapter {
+- ArrayList<Employee> employees
++ ViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(ViewHolder,int)
++ int getItemCount()
+}
+class com.example.employeesassignment.employeemanagment.EmployeeAdapter.ViewHolder {
+- EmployeeItemBinding binding
++ void bind(Employee)
+}
+interface com.example.employeesassignment.spinner.FilterOnClick {
++ {abstract}void filterList()
+}
+enum com.example.employeesassignment.database.CreateTableSql {
++  EXPERTISE_FIELDS
++  EMPLOYEES
++  EMPLOYEE_EXPERTISE
++  USERS
+- String sql
++ String toString()
+}
+class com.example.employeesassignment.MusicService {
++ MediaPlayer myPlayer
+- float leftVolume
+- LocalBinder binder
++ IBinder onBind(Intent)
++ void onCreate()
++ void playMusic()
++ void stopMusic()
++ void onDestroy()
++ float getVolume()
++ void setVolume(float,float)
+}
+class com.example.employeesassignment.MusicService.LocalBinder {
++ MusicService getService()
+}
+class com.example.employeesassignment.employeemanagment.EmployeeListFragment {
+- FragmentEmployeeListBinding binding
+- RecyclerView listView
+- Button btnSortByName
+- TextView expertiseSpinner
+- SearchView searchView
++ ArrayList<Employee> employeesList
+- EmployeeFilter employeeFilter
++ void onCreate(Bundle)
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+- void setEmployeeListFromDatabase()
+- void setAdapter(ArrayList<Employee>)
++ void onDestroyView()
+}
+class com.example.employeesassignment.employeemanagment.EmployeeListFragment.EmployeeFilter {
+- ArrayList<String> selectedExpertiseFilters
+~ SortFilterMultiChoiceSpinnerListener expertiseFieldsSpinnerListener
+- String currentSearchText
+- void unSelectAllSortButtons()
+- void lookSelected(Button)
+- void lookUnSelected(Button)
+- void applyFilterAndDisplayBtnSelect(Button,Comparator<Employee>)
+- boolean doesEmployeeMatchSearch(Employee)
+- boolean doesEmployeeMatchFilters(Employee)
+- void filterEmployees()
+- void setOnClickListeners()
+}
+class com.example.employeesassignment.employeemanagment.AddEmployee {
+- {static} String[] EMPLOYMENT_RATES_ARR
+- EditText etFullName
+- TextView tvSelectEmploymentRate
+- ImageView ivImage
+- Bitmap bitmapImage
+- ActivityResultLauncher<String> pickImageLauncher
+- ActivityResultLauncher<Intent> takeImageLauncher
+- SqlHandler db
+- FragmentAddEmployeeBinding binding
++ String tvToStr(TextView)
++ int tvToInt(TextView)
+~ boolean isTextViewEmpty(TextView)
+- {static} void setTextInputLayoutError(EditText,String)
+- boolean isAnyRequiredFieldEmpty()
+- boolean areAllFieldsValid()
++ void onCreate(Bundle)
+- void showSuccessfulRegister(View)
+- void showFailedRegister(View)
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
++ void onDestroyView()
+}
+class com.example.employeesassignment.employeemanagment.AddEmployee.AfterTextChangeValidator {
+- EditText et
++ void onTextChanged(CharSequence,int,int,int)
++ void beforeTextChanged(CharSequence,int,int,int)
++ void afterTextChanged(Editable)
+}
+class com.example.employeesassignment.employeemanagment.AddEmployee.EmptyTextListener {
+- EditText et
++ boolean onEditorAction(TextView,int,KeyEvent)
+}
+class com.example.employeesassignment.userlogin.Login {
+- EditText etLoginUsername
+- EditText etLoginPass
+- FragmentLoginBinding binding
++ void onCreate(Bundle)
+- {static} boolean checkAndPromptField(EditText)
+- void setSessionInfoInNavDrawer(String)
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
++ void onDestroyView()
+}
+class com.example.employeesassignment.userlogin.Login.EmptyTextListener {
+- EditText et
++ boolean onEditorAction(TextView,int,KeyEvent)
+}
+class com.example.employeesassignment.database.SqlHandler {
+- {static} SqlHandler instance
+- {static} String DATABASE_NAME
+- {static} int DATABASE_VERSION
+- {static} String EXPERTISE_FIELDS
+- {static} String EMPLOYEES
+- {static} String EMP_NAME
+- {static} String EMP_HOURLY_PAY
+- {static} String EMP_ADDRESS
+- {static} String EMP_PICTURE
+- {static} String EMP_EDUCATION
+- {static} String EMP_EMPLOYMENT_RATE
+- {static} String EMPLOYEES_NAME
+- {static} String EXPERTISE_FIELDS_NAME
++ void onCreate(SQLiteDatabase)
++ void onUpgrade(SQLiteDatabase,int,int)
++ void close()
++ {static} SqlHandler getInstance(Context)
+- Cursor getColByCol(String,String,String,String)
+- boolean doesRowExist(String,String,String)
++ boolean doesEmployeeExist(String)
+- Cursor getAllRowsOfCol(String,String)
+- String getIdByCol(String,String,String)
++ String getEmailByUsername(String)
+- void insertEmployeeExpertise(String,String)
+- void insertEmployeeExpertises(String,ArrayList<String>)
+- Bitmap blobToBitmap(byte[])
+- {static} byte[] bitmapToBlob(Bitmap)
++ ArrayList<Employee> getEmployees()
++ boolean addEmployee(String,String,String,int,int,ArrayList<String>,Bitmap)
++ String[] getFieldsOfExpertise()
+- ArrayList<String> getEmployeeFieldsOfExpertise(int)
++ boolean register(String,String,String)
++ Cursor getData(String)
+- boolean doesExist(String)
+- boolean doesExist(String,String,String)
++ boolean doesUserExist(String)
++ boolean doesEmailExist(String)
++ boolean isPasswordCorrect(String,String)
+}
+class com.example.employeesassignment.spinner.SingleChoiceSpinnerListener {
+~ TextView tv
+~ String[] itemsArr
+~ String title
+~ String chosen
+~ AlertDialog.Builder alertDialog
+- AlertDialog.Builder buildAlertDialog(Context)
++ void onClick(View)
+}
+class com.example.employeesassignment.SessHelper {
+- {static} SharedPreferences SP
+- {static} SharedPreferences.Editor editor
+- {static} SessHelper instance
++ {static} SessHelper getInstance(Context)
++ void login(String,String)
+- String getData(String)
++ String getUsername()
++ String getEmail()
++ void logout()
+}
+class com.example.employeesassignment.employeemanagment.EmployeeProfileFragment {
+- Employee selectedEmployee
+- FragmentEmployeeProfileBinding binding
++ void onCreate(Bundle)
++ View onCreateView(LayoutInflater,ViewGroup,Bundle)
+- void putEmployeeInfoOnDisplay()
++ void onDestroyView()
+}
+class com.example.employeesassignment.Employee {
+- String name
+- String address
+- String education
+- ArrayList<String> fieldsOfExpertise
+- int employmentRate
+- int hourlyPay
+- Bitmap picture
++ {static} Creator<Employee> CREATOR
++ {static} Comparator<Employee> nameAsc
++ {static} Comparator<Employee> hourlyPayDsc
++ {static} Comparator<Employee> employmentRateDsc
++ void writeToParcel(Parcel,int)
++ void setName(String)
++ void setAddress(String)
++ void setEducation(String)
++ void setFieldsOfExpertise(ArrayList<String>)
++ void setEmploymentRate(int)
++ void setHourlyPay(int)
++ String getName()
++ String getAddress()
++ String getEducation()
++ ArrayList<String> getFieldsOfExpertise()
++ String getFieldsOfExpertiseAsString()
++ int getEmploymentRate()
++ int getHourlyPay()
++ Bitmap getPicture()
++ int describeContents()
+}
+enum com.example.employeesassignment.database.Table {
++  USERS
++  EXPERTISE_FIELDS
++  EMPLOYEES
++  EMPLOYEE_EXPERTISE
+- String name
++ String toString()
+}
+
+
+com.example.employeesassignment.spinner.MultiSChoiceLSpinnerListener <|-- com.example.employeesassignment.spinner.SortFilterMultiChoiceSpinnerListener
+androidx.appcompat.app.AppCompatActivity <|-- com.example.employeesassignment.MainActivity
+androidx.fragment.app.Fragment <|-- com.example.employeesassignment.SettingsFragment
+androidx.fragment.app.Fragment <|-- com.example.employeesassignment.userlogin.Register
+com.example.employeesassignment.userlogin.Register +.. com.example.employeesassignment.userlogin.Register.AfterTextChangeValidator
+com.example.employeesassignment.userlogin.TextWatcher <|.. com.example.employeesassignment.userlogin.Register.AfterTextChangeValidator
+com.example.employeesassignment.userlogin.Register +.. com.example.employeesassignment.userlogin.Register.EmptyTextListener
+com.example.employeesassignment.userlogin.OnEditorActionListener <|.. com.example.employeesassignment.userlogin.Register.EmptyTextListener
+com.example.employeesassignment.spinner.OnClickListener <|.. com.example.employeesassignment.spinner.MultiSChoiceLSpinnerListener
+com.example.employeesassignment.employeemanagment.Adapter <|-- com.example.employeesassignment.employeemanagment.EmployeeAdapter
+com.example.employeesassignment.employeemanagment.EmployeeAdapter +.. com.example.employeesassignment.employeemanagment.EmployeeAdapter.ViewHolder
+com.example.employeesassignment.employeemanagment.ViewHolder <|-- com.example.employeesassignment.employeemanagment.EmployeeAdapter.ViewHolder
+android.app.Service <|-- com.example.employeesassignment.MusicService
+com.example.employeesassignment.MusicService +.. com.example.employeesassignment.MusicService.LocalBinder
+com.example.employeesassignment.Binder <|-- com.example.employeesassignment.MusicService.LocalBinder
+androidx.fragment.app.Fragment <|-- com.example.employeesassignment.employeemanagment.EmployeeListFragment
+com.example.employeesassignment.employeemanagment.EmployeeListFragment +.. com.example.employeesassignment.employeemanagment.EmployeeListFragment.EmployeeFilter
+androidx.fragment.app.Fragment <|-- com.example.employeesassignment.employeemanagment.AddEmployee
+com.example.employeesassignment.employeemanagment.AddEmployee +.. com.example.employeesassignment.employeemanagment.AddEmployee.AfterTextChangeValidator
+com.example.employeesassignment.employeemanagment.TextWatcher <|.. com.example.employeesassignment.employeemanagment.AddEmployee.AfterTextChangeValidator
+com.example.employeesassignment.employeemanagment.AddEmployee +.. com.example.employeesassignment.employeemanagment.AddEmployee.EmptyTextListener
+com.example.employeesassignment.employeemanagment.OnEditorActionListener <|.. com.example.employeesassignment.employeemanagment.AddEmployee.EmptyTextListener
+androidx.fragment.app.Fragment <|-- com.example.employeesassignment.userlogin.Login
+com.example.employeesassignment.userlogin.Login +.. com.example.employeesassignment.userlogin.Login.EmptyTextListener
+com.example.employeesassignment.userlogin.OnEditorActionListener <|.. com.example.employeesassignment.userlogin.Login.EmptyTextListener
+android.database.sqlite.SQLiteOpenHelper <|-- com.example.employeesassignment.database.SqlHandler
+com.example.employeesassignment.spinner.OnClickListener <|.. com.example.employeesassignment.spinner.SingleChoiceSpinnerListener
+androidx.fragment.app.Fragment <|-- com.example.employeesassignment.employeemanagment.EmployeeProfileFragment
+android.os.Parcelable <|.. com.example.employeesassignment.Employee
+@enduml

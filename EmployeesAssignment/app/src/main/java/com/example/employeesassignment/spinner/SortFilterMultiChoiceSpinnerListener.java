@@ -1,13 +1,14 @@
-package com.example.employeesassignment.employeelist;
+package com.example.employeesassignment.spinner;
 
 import android.content.Context;
 import android.widget.TextView;
 
+import java.util.Collections;
+
 public class SortFilterMultiChoiceSpinnerListener extends MultiSChoiceLSpinnerListener {
-    private FilterOnClick filterOnClick;
+    private final FilterOnClick filterOnClick;
     public SortFilterMultiChoiceSpinnerListener(TextView tv, String[] itemsArr, String title, Context context, FilterOnClick filterOnClick) {
-        super(tv, itemsArr, title, context);
-        this.neutralTextTitle = "Select All";
+        super(tv, itemsArr, title, context, "Select All");
         this.filterOnClick = filterOnClick;
         checkAllFields();
         fillItemsList();
@@ -20,23 +21,12 @@ public class SortFilterMultiChoiceSpinnerListener extends MultiSChoiceLSpinnerLi
 
     private void fillItemsList() {
         chosenItemsList.clear();
-        for (int i = 0; i < itemsArr.length; i++) {
-            chosenItemsList.add(itemsArr[i]);
-        }
+        Collections.addAll(chosenItemsList, itemsArr);
     }
 
     private void checkAllFields() {
         for (int i = 0; i < itemsArr.length; i++) {
             this.selectedItems[i] = true;
-        }
-    }
-
-    @Override
-    protected void setItem(int i, boolean b) {
-        if (b) {
-            chosenItemsList.add(itemsArr[i]);
-        } else {
-            chosenItemsList.remove(String.valueOf(itemsArr[i]));
         }
     }
 

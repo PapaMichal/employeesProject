@@ -1,13 +1,14 @@
-package com.example.employeesassignment.addemployee;
+package com.example.employeesassignment.employeemanagment;
+
+import static android.app.Activity.RESULT_OK;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
@@ -23,22 +24,24 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.employeesassignment.InputPatterns;
+import com.example.employeesassignment.spinner.MultiSChoiceLSpinnerListener;
 import com.example.employeesassignment.R;
 import com.example.employeesassignment.database.SqlHandler;
 import com.example.employeesassignment.databinding.FragmentAddEmployeeBinding;
+import com.example.employeesassignment.spinner.SingleChoiceSpinnerListener;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.IOException;
 
 public class AddEmployee extends Fragment {
-    private static final int PICK_IMAGE_REQUEST = 1;
     private final static String[] EMPLOYMENT_RATES_ARR = {"100", "80", "60", "40", "20"};
     private EditText etFullName, etHourlyPay, etAddress, etEducation;
-    private TextView tvSelectExpertiseFields, tvSelectEmploymentRate;
-    private Button btnSubmit, btnImage;
+    private TextView tvSelectEmploymentRate;
     private ImageView ivImage;
     private Bitmap bitmapImage;
     private ActivityResultLauncher<String> pickImageLauncher;
+    private ActivityResultLauncher<Intent> takeImageLauncher;
     private SqlHandler db;
     private FragmentAddEmployeeBinding binding;
 
@@ -57,7 +60,7 @@ public class AddEmployee extends Fragment {
         return tv.getText().toString().isEmpty();
     }
 
-    private void setTextInputLayoutError(EditText childEt, String errorMsg) {
+    private static void setTextInputLayoutError(EditText childEt, String errorMsg) {
         ((TextInputLayout)childEt.getParent().getParent()).setError(errorMsg);
     }
 
@@ -86,24 +89,27 @@ public class AddEmployee extends Fragment {
         super.onCreate(savedInstanceState);
         pickImageLauncher = registerForActivityResult(new
                         ActivityResultContracts.GetContent(),
-                new ActivityResultCallback<Uri>() {
-                    @Override
-                    public void onActivityResult(Uri uri) {
-                        if (uri != null) {
-                            try {
-                                bitmapImage = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), uri);
-                                ivImage.setImageBitmap(bitmapImage);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+                uri -> {
+                    if (uri != null) {
+                        try {
+                            bitmapImage = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), uri);
+                            ivImage.setImageBitmap(bitmapImage);
+                        } catch (IOException e) {
+                            e.printStackTrace();
                         }
                     }
                 });
+        takeImageLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+           if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+               bitmapImage = (Bitmap)result.getData().getExtras().get("data");
+               ivImage.setImageBitmap(bitmapImage);
+           }
+        });
     }
 
 
-    class AfterTextChangeValidator implements TextWatcher {
-        private EditText et;
+    private static class AfterTextChangeValidator implements TextWatcher {
+        private final EditText et;
         AfterTextChangeValidator(EditText et) {
             this.et = et;
         }
@@ -117,11 +123,10 @@ public class AddEmployee extends Fragment {
 
         @Override
         public void afterTextChanged(Editable s)  {
-            String str = et.getText().toString();
             switch (et.getId()) {
                 case R.id.add_emp_et_full_name:
                     if (InputPatterns.NAME.validateAndDisplay(et)) {
-                        if (db.doesEmployeeExist(et.getText().toString())) {
+                        if (SqlHandler.getInstance(et.getContext()).doesEmployeeExist(et.getText().toString())) {
                             setTextInputLayoutError(et, "This employee is already registered.");
                         }
                     }
@@ -156,19 +161,19 @@ public class AddEmployee extends Fragment {
         }
     }
 
-    public void showSuccessfulRegister(View v) {
+    private void showSuccessfulRegister(View v) {
         new AlertDialog.Builder(v.getContext())
-                .setTitle("Sucess!\n")
+                .setTitle("Success!\n")
                 .show();
     }
 
-    public void showFailedRegister(View v) {
+    private void showFailedRegister(View v) {
         new AlertDialog.Builder(v.getContext())
                 .setTitle("Registration failed")
                 .show();
     }
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentAddEmployeeBinding.inflate(inflater, container, false);
@@ -177,13 +182,12 @@ public class AddEmployee extends Fragment {
         etAddress = binding.addEmpEtAddress;
         etHourlyPay = binding.addEmpEtHourlyPay;
         etEducation = binding.addEmpEtEducation;
-        btnSubmit = binding.addEmpBtnSubmit;
-        tvSelectExpertiseFields = binding.addEmpSpExpertise;
         tvSelectEmploymentRate = binding.addEmpSpEmploymentRate;
         ivImage = binding.addEmpIvImage;
-        btnImage = binding.addEmpImageBtn;
+        Button btnSubmit = binding.addEmpBtnSubmit;
+        TextView tvSelectExpertiseFields = binding.addEmpSpExpertise;
         db = SqlHandler.getInstance(v.getContext());
-        EditText etArrOfFields[] = {etFullName, etAddress, etHourlyPay, etEducation};
+        EditText[] etArrOfFields = {etFullName, etAddress, etHourlyPay, etEducation};
         for (EditText field: etArrOfFields) {
             field.addTextChangedListener(new AfterTextChangeValidator(field));
             field.setOnEditorActionListener(new EmptyTextListener(field));
@@ -194,36 +198,31 @@ public class AddEmployee extends Fragment {
         tvSelectEmploymentRate.setOnClickListener(new SingleChoiceSpinnerListener(tvSelectEmploymentRate,
                 EMPLOYMENT_RATES_ARR,"Select Employment Rate", getContext()));
         MultiSChoiceLSpinnerListener selectExpertiseListener = new MultiSChoiceLSpinnerListener(tvSelectExpertiseFields,
-                fieldsOfExpertiseArr, "Select Expertise Fields", getContext());
+                fieldsOfExpertiseArr, "Select Expertise Fields", getContext(), "Clear");
         tvSelectExpertiseFields.setOnClickListener(selectExpertiseListener);
 
-        btnImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                pickImageLauncher.launch("image/*");
-            }
+        binding.addEmpImageGalleryBtn .setOnClickListener(view -> pickImageLauncher.launch("image/*"));
+        binding.addEmpImageCameraBtn.setOnClickListener(v1 -> {
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            takeImageLauncher.launch(intent);
         });
 
 
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if (!isAnyRequiredFieldEmpty() && areAllFieldsValid()) {
-                    if (db.addEmployee(
-                            tvToStr(binding.addEmpEtFullName),
-                            tvToStr(etAddress),
-                            tvToStr(etEducation),
-                            tvToInt(etHourlyPay),
-                            tvToInt(tvSelectEmploymentRate),
-                            selectExpertiseListener.getChosenOptions(),
-                            bitmapImage)
-                    ) {
-                        showSuccessfulRegister(v);
-                    }
-                    else {
-                        showFailedRegister(v);
-                    }
+        btnSubmit.setOnClickListener(view -> {
+            if (!isAnyRequiredFieldEmpty() && areAllFieldsValid()) {
+                if (db.addEmployee(
+                        tvToStr(binding.addEmpEtFullName),
+                        tvToStr(etAddress),
+                        tvToStr(etEducation),
+                        tvToInt(etHourlyPay),
+                        tvToInt(tvSelectEmploymentRate),
+                        selectExpertiseListener.getChosenItemsList(),
+                        bitmapImage)
+                ) {
+                    showSuccessfulRegister(v);
+                }
+                else {
+                    showFailedRegister(v);
                 }
             }
         });

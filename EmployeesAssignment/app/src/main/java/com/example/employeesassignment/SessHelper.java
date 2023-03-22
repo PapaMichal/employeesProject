@@ -27,8 +27,7 @@ public class SessHelper {
     }
 
     private String getData(String key) {
-        String s = SP.getString(key, null);
-        return s;
+        return SP.getString(key, null);
     }
 
     public String getUsername() {

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".addemployee.AddEmployee"
+    tools:context=".employeemanagment.AddEmployee"
     android:background="@color/md_theme_light_primary"
     android:name="androidx.navigation.fragment.NavHostFragment">
 
@@ -156,17 +156,32 @@
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/add_emp_sp_expertise"
             style="@style/SpinnerAppearance"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_expertise30dp"
             android:drawableTint="@color/md_theme_light_outline"
             android:hint="Select Fields Of Expertise"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@+id/add_emp_sp_employment_rate"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/add_emp_ti_hourly_pay"
             app:layout_constraintWidth_percent="0.9" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/add_emp_btn_submit"
+            style="@style/submit_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/md_theme_light_secondary"
+            android:text="Add"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/add_emp_image_gallery_btn"
+            app:layout_constraintVertical_bias="1.0"
+            app:layout_constraintWidth_percent="0.5" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/add_emp_sp_employment_rate"
@@ -177,54 +192,50 @@
             android:drawableStart="@drawable/ic_percent30dp"
             android:drawableTint="@color/md_theme_light_outline"
             android:hint="Employment Rate"
-            app:layout_constraintBottom_toTopOf="@id/add_emp_image_btn"
+            app:layout_constraintBottom_toTopOf="@id/add_emp_image_gallery_btn"
             app:layout_constraintHorizontal_bias="0.512"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/add_emp_sp_expertise"
             app:layout_constraintWidth_percent="0.9" />
 
+
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/add_emp_image_btn"
-            style="@style/submit_button"
+            android:id="@+id/add_emp_image_gallery_btn"
+            style="@style/image_upload_button"
             android:layout_width="wrap_content"
+            android:text="Gallery"
+            android:textAllCaps="false"
             android:layout_height="wrap_content"
             android:drawableLeft="@android:drawable/ic_menu_gallery"
-            android:text="Upload image"
-            android:textSize="15dp"
             app:layout_constraintBottom_toTopOf="@id/add_emp_btn_submit"
-            app:layout_constraintHorizontal_bias="0.102"
+            app:layout_constraintRight_toLeftOf="@+id/add_emp_image_camera_btn"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_emp_sp_employment_rate"
-            app:layout_constraintWidth_percent="0.5" />
+            app:layout_constraintTop_toBottomOf="@+id/add_emp_sp_employment_rate" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/add_emp_btn_submit"
-            style="@style/submit_button"
-            android:layout_width="0dp"
+            android:id="@+id/add_emp_image_camera_btn"
+            style="@style/image_upload_button"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add"
-            android:backgroundTint="@color/md_theme_light_secondary"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/add_emp_image_btn"
-            app:layout_constraintVertical_bias="1.0"
-            app:layout_constraintWidth_percent="0.5" />
-
+            android:text="Camera"
+            android:textAllCaps="false"
+            android:drawableLeft="@android:drawable/ic_menu_camera"
+            app:layout_constraintBottom_toTopOf="@id/add_emp_btn_submit"
+            app:layout_constraintRight_toLeftOf="@+id/add_emp_iv_image"
+            app:layout_constraintLeft_toRightOf="@+id/add_emp_image_gallery_btn"
+            app:layout_constraintTop_toBottomOf="@+id/add_emp_sp_employment_rate" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/add_emp_iv_image"
-            app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toTopOf="@+id/add_emp_btn_submit"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/add_emp_image_btn"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/add_emp_image_camera_btn"
             app:layout_constraintTop_toBottomOf="@+id/add_emp_sp_employment_rate"
+            app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
             tools:src="@tools:sample/avatars" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

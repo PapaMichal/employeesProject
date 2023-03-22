@@ -23,7 +23,7 @@
     </fragment>
     <fragment
         android:id="@+id/addEmployee"
-        android:name="com.example.employeesassignment.addemployee.AddEmployee"
+        android:name="com.example.employeesassignment.employeemanagment.AddEmployee"
         android:label="Add Employee"
         tools:layout="@layout/fragment_add_employee" >
         <action
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/employeeItemFragment"
-        android:name="com.example.employeesassignment.employeelist.EmployeeProfileFragment"
+        android:name="com.example.employeesassignment.employeemanagment.EmployeeProfileFragment"
         android:label="Employee Profile"
         tools:layout="@layout/fragment_employee_profile" >
         <argument
@@ -48,7 +48,7 @@
     </fragment>
     <fragment
         android:id="@+id/employeeList"
-        android:name="com.example.employeesassignment.employeelist.EmployeeListFragment"
+        android:name="com.example.employeesassignment.employeemanagment.EmployeeListFragment"
         android:label="Employees"
         tools:layout="@layout/fragment_employee_list" >
         <action

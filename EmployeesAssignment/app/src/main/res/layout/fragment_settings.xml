@@ -3,83 +3,124 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/md_theme_light_secondaryContainer"
     tools:context=".SettingsFragment">
 
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/settings_btn_start_music"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:background="@color/md_theme_light_secondary"
+        android:layout_width="47dp"
+        android:layout_height="47dp"
+
         android:src="@android:drawable/ic_media_play"
-        app:layout_constraintBottom_toTopOf="@+id/volumeSeekBar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.938"
+        app:layout_constraintHorizontal_bias="0.435"
         app:layout_constraintStart_toEndOf="@+id/settings_btn_stop_music"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.945"
-        app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
-        />
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/settings_btn_stop_music"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:background="@color/md_theme_light_secondary"
-        android:src="@android:drawable/ic_media_pause"
-        app:layout_constraintBottom_toTopOf="@+id/volumeSeekBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.072"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.945"
+        app:layout_constraintTop_toBottomOf="@+id/volumeSeekBar"
+        app:layout_constraintVertical_bias="0.469"
         app:shapeAppearanceOverlay="@style/roundedImageViewRounded" />
 
-    <SeekBar
-        android:id="@+id/volumeSeekBar"
-        android:layout_width="362dp"
-        android:layout_height="23dp"
-        android:max="100"
-        android:progress="100"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.69" />
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/settings_btn_stop_music"
+        android:layout_width="47dp"
+        android:layout_height="46dp"
 
-    <TextView
-        android:id="@+id/settings_tv_volume"
-        android:layout_width="59dp"
-        android:layout_height="27dp"
-        android:text="Volume"
-        android:textAlignment="center"
+        android:src="@android:drawable/ic_media_pause"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.271"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/volumeSeekBar"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pause"
-        app:layout_constraintBottom_toTopOf="@+id/settings_btn_stop_music"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.096"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.47"
+        app:shapeAppearanceOverlay="@style/roundedImageViewRounded" />
 
     <TextView
         android:id="@+id/settings_tv_play"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Play"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/settings_btn_start_music"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.916"
+        app:layout_constraintHorizontal_bias="0.651"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/volumeSeekBar"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="48dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="16dp"
+        android:text="Pause"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/settings_btn_stop_music"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.272"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/volumeSeekBar"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <com.google.android.material.slider.Slider
+        android:id="@+id/volumeSeekBar"
+        style="App.widget.slider"
+        android:layout_width="281dp"
+        android:layout_height="47dp"
+        android:valueFrom="0.0"
+        android:valueTo="100.0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_music_settings"
+        app:layout_constraintVertical_bias="0.347" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="36dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_volume"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/volumeSeekBar"
+        app:layout_constraintTop_toBottomOf="@+id/tv_music_settings"
+        app:layout_constraintVertical_bias="0.35" />
+
+    <TextView
+        android:id="@+id/tv_volume"
+        style="@style/TextAppearance.AppCompat.Menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Volume"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@+id/volumeSeekBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/volumeSeekBar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/tv_music_settings"
+        style="@style/TextAppearance.MaterialComponents.Headline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/segoe_ui_bold"
+        android:textColor="@color/md_theme_light_onSecondary"
+        android:text="Music Settings"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.997" />
+        app:layout_constraintVertical_bias="0.112" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

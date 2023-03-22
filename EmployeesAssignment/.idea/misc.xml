@@ -36,6 +36,20 @@
         <entry key="..\:/AndroidStudioProjects/EmployeesAssignment/app/src/main/res/menu/activity_main_drawer.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidStudioProjects/EmployeesAssignment/app/src/main/res/menu/main.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidStudioProjects/EmployeesAssignment/app/src/main/res/xml/root_preferences.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/projectGit/employeesProject/EmployeesAssignment/app/src/main/res/drawable/sb_volume_control.xml" value="0.26" />
+        <entry key="..\:/AndroidStudioProjects/projectGit/employeesProject/EmployeesAssignment/app/src/main/res/drawable/sb_volume_resources.xml" value="0.26" />
+        <entry key="..\:/AndroidStudioProjects/projectGit/employeesProject/EmployeesAssignment/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/projectGit/employeesProject/EmployeesAssignment/app/src/main/res/layout/content_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/AndroidStudioProjects/projectGit/employeesProject/EmployeesAssignment/app/src/main/res/layout/employee_item.xml" value="0.17831813576494426" />
+        <entry key="..\:/AndroidStudioProjects/projectGit/employeesProject/EmployeesAssignment/app/src/main/res/layout/fragment_add_employee.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/projectGit/employeesProject/EmployeesAssignment/app/src/main/res/layout/fragment_employee_list.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/projectGit/employeesProject/EmployeesAssignment/app/src/main/res/layout/fragment_employee_profile.xml" value="0.17831813576494426" />
+        <entry key="..\:/AndroidStudioProjects/projectGit/employeesProject/EmployeesAssignment/app/src/main/res/layout/fragment_login.xml" value="0.21467391304347827" />
+        <entry key="..\:/AndroidStudioProjects/projectGit/employeesProject/EmployeesAssignment/app/src/main/res/layout/fragment_register.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/projectGit/employeesProject/EmployeesAssignment/app/src/main/res/layout/fragment_settings.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/projectGit/employeesProject/EmployeesAssignment/app/src/main/res/layout/nav_header_main.xml" value="0.17831813576494426" />
+        <entry key="..\:/AndroidStudioProjects/projectGit/employeesProject/EmployeesAssignment/app/src/main/res/menu/activity_main_drawer.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/projectGit/employeesProject/EmployeesAssignment/app/src/main/res/menu/main.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>

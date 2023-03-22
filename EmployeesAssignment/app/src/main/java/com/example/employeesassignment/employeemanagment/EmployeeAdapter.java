@@ -1,8 +1,5 @@
-package com.example.employeesassignment.employeelist;
-
-import android.content.Context;
+package com.example.employeesassignment.employeemanagment;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -16,7 +13,7 @@ import java.util.ArrayList;
 
 public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHolder> {
 
-    private ArrayList<Employee> employees;
+    private final ArrayList<Employee> employees;
 
     public EmployeeAdapter(ArrayList<Employee> employees) {
         this.employees = employees;
@@ -41,9 +38,9 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
         return employees.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        private EmployeeItemBinding binding;
+        private final EmployeeItemBinding binding;
 
         public ViewHolder(EmployeeItemBinding itemView) {
             super(itemView.getRoot());
@@ -52,9 +49,9 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
 
         public void bind(Employee employee) {
             binding.tvEmployeeCellName.setText(employee.getName());
-            binding.tvEmployeeCellEmploymentRate.setText("Employment Rate: " + Integer.toString(employee.getEmploymentRate()));
+            binding.tvEmployeeCellEmploymentRate.setText("Employment Rate: " + employee.getEmploymentRate());
             binding.tvEmployeeCellExpertise.setText(employee.getFieldsOfExpertiseAsString());
-            binding.tvEmployeeCellHourlyPay.setText("Hourly Pay: " + Integer.toString(employee.getHourlyPay()));
+            binding.tvEmployeeCellHourlyPay.setText("Hourly Pay: " + employee.getHourlyPay());
 
             if (employee.getPicture() != null) {
                 binding.ivEmployeeCellImg.setImageBitmap(employee.getPicture());

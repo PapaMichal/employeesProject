@@ -1,18 +1,12 @@
 package com.example.employeesassignment;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDestination;
 import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -20,7 +14,6 @@ import android.content.ServiceConnection;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -47,8 +40,6 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        SessHelper sessHelper = new SessHelper(this);
-
         //Set the action bar to the tool bar
         setSupportActionBar(binding.appBarMain.toolbar);
 
@@ -74,35 +65,23 @@ public class MainActivity extends AppCompatActivity {
         This is done to prevent the drawer staying open on logout and allowing access
         to other pages
         */
-        navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()) {
-                    case R.id.logout:
-                        //logout
-                        navController.navigate(R.id.action_global_login, null, navOptions);
-                        binding.drawerLayout.closeDrawer(GravityCompat.START);
-                        SessHelper.getInstance(getParent()).logout();
-                        return true;
-                    default:
-                        navController.navigate(menuItem.getItemId(), null, navOptions);
-                        binding.drawerLayout.closeDrawer(GravityCompat.START);
-                        return false;
-                }
+        navView.setNavigationItemSelectedListener(menuItem -> {
+            if (menuItem.getItemId() == R.id.logout) {//logout
+                navController.navigate(R.id.action_global_login, null, navOptions);
+                binding.drawerLayout.closeDrawer(GravityCompat.START);
+                SessHelper.getInstance(getParent()).logout();
+                return true;
             }
+            navController.navigate(menuItem.getItemId(), null, navOptions);
+            binding.drawerLayout.closeDrawer(GravityCompat.START);
+            return false;
         });
         navView.bringToFront();
 
         /*
         Hides the menu when on the register/login page, in order to prevent access
         */
-        navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
-            @Override
-            public void onDestinationChanged(@NonNull NavController controller,
-                                             @NonNull NavDestination destination, @Nullable Bundle arguments) {
-                binding.appBarMain.toolbar.setBackgroundColor(Color.TRANSPARENT);
-            }
-        });
+        navController.addOnDestinationChangedListener((controller, destination, arguments) -> binding.appBarMain.toolbar.setBackgroundColor(Color.TRANSPARENT));
         SqlHandler.getInstance(binding.getRoot().getContext());
 
         //Bind the music service to main activity
@@ -117,14 +96,11 @@ public class MainActivity extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.settings:
-                // Code to switch to the settings fragment
-                navController.navigate(R.id.action_global_settings, null, navOptions);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.settings) {// Code to switch to the settings fragment
+            navController.navigate(R.id.action_global_settings, null, navOptions);
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -139,13 +115,10 @@ public class MainActivity extends AppCompatActivity {
     private MusicService boundService;
     private boolean isBound;
 
-    private ServiceConnection mConnection = new ServiceConnection() {
+    private final ServiceConnection mConnection = new ServiceConnection() {
         public void onServiceConnected(ComponentName className, IBinder service) {
             boundService = ((MusicService.LocalBinder) service).getService();
-
-
         }
-
         public void onServiceDisconnected(ComponentName className) {
             boundService = null;
         }
@@ -167,8 +140,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void setNavHeaderUserAndEmail() {
         View headerView = navView.getHeaderView(0);
-        TextView tvNavHeaderUsername = (TextView)headerView.findViewById(R.id.nav_header_username);
-        TextView tvNavHeaderEmail = (TextView)headerView.findViewById(R.id.nav_header_email);
+        TextView tvNavHeaderUsername = headerView.findViewById(R.id.nav_header_username);
+        TextView tvNavHeaderEmail = headerView.findViewById(R.id.nav_header_email);
         SessHelper sessHelper = SessHelper.getInstance(this);
         tvNavHeaderUsername.setText(sessHelper.getUsername());
         tvNavHeaderEmail.setText(sessHelper.getEmail());

@@ -16,7 +16,7 @@ public class Employee implements Parcelable {
     private ArrayList<String> fieldsOfExpertise;
     private int employmentRate;
     private int hourlyPay;
-    private Bitmap picture;
+    private final Bitmap picture;
     public Employee(String name, String address, String education, ArrayList<String> fieldsOfExpertise, int employmentRate, int hourlyPay, Bitmap picture) {
         this.name = name;
         this.address = address;
@@ -99,14 +99,14 @@ public class Employee implements Parcelable {
         return fieldsOfExpertise;
     }
     public String getFieldsOfExpertiseAsString() {
-        String fieldsStr = "";
+        StringBuilder fieldsStr = new StringBuilder();
         if (fieldsOfExpertise.size() > 0) {
-            fieldsStr += fieldsOfExpertise.get(0);
+            fieldsStr.append(fieldsOfExpertise.get(0));
             for (int i = 1; i < fieldsOfExpertise.size(); i++) {
-                fieldsStr += ", " + fieldsOfExpertise.get(i);
+                fieldsStr.append(", ").append(fieldsOfExpertise.get(i));
             }
         }
-        return fieldsStr;
+        return fieldsStr.toString();
     }
 
     public int getEmploymentRate() {
@@ -117,37 +117,22 @@ public class Employee implements Parcelable {
     }
     public Bitmap getPicture() {return picture;}
 
-    public static Comparator<Employee> nameAsc = new Comparator<Employee>()
-    {
-        @Override
-        public int compare(Employee employee1, Employee employee2)
-        {
-            String name1 = employee1.getName().toLowerCase();
-            String name2 = employee2.getName().toLowerCase();
-            return name1.compareTo(name2);
-        }
+    public static Comparator<Employee> nameAsc = (employee1, employee2) -> {
+        String name1 = employee1.getName().toLowerCase();
+        String name2 = employee2.getName().toLowerCase();
+        return name1.compareTo(name2);
     };
 
-    public static Comparator<Employee> hourlyPayDsc = new Comparator<Employee>()
-    {
-        @Override
-        public int compare(Employee employee1, Employee employee2)
-        {
-            int hourlyPay1 = Integer.valueOf(employee1.getHourlyPay());
-            int hourlyPay2 = Integer.valueOf(employee2.getHourlyPay());
-            return Integer.compare(hourlyPay1,  hourlyPay2);
-        }
+    public static Comparator<Employee> hourlyPayDsc = (employee1, employee2) -> {
+        int hourlyPay1 = employee1.getHourlyPay();
+        int hourlyPay2 = employee2.getHourlyPay();
+        return Integer.compare(hourlyPay2,  hourlyPay1);
     };
 
-    public static Comparator<Employee> employmentRateDsc = new Comparator<Employee>()
-    {
-        @Override
-        public int compare(Employee employee1, Employee employee2)
-        {
-            int employmentRate1 = Integer.valueOf(employee1.getEmploymentRate());
-            int employmentRate2 = Integer.valueOf(employee2.getEmploymentRate());
-            return Integer.compare(employmentRate1,  employmentRate2);
-        }
+    public static Comparator<Employee> employmentRateDsc = (employee1, employee2) -> {
+        int employmentRate1 = employee1.getEmploymentRate();
+        int employmentRate2 = employee2.getEmploymentRate();
+        return Integer.compare(employmentRate2,  employmentRate1);
     };
 
 

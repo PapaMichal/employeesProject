@@ -1,13 +1,17 @@
-package com.example.employeesassignment.userlogin;
+package com.example.employeesassignment;
 
 import android.widget.EditText;
 
 import java.util.regex.Pattern;
 
-enum InputPatterns {
+public enum InputPatterns {
     USERNAME("Username", "^[a-zA-Z0-9_]{1,16}$", "Username may contain letters, numbers and underscores.", 1, 16),
     PASSWORD("Password", "^(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])[a-zA-Z0-9]{8,20}$", "Password must contain a lowercase letter, an uppercase letter, and a number", 8, 20),
-    EMAIL("Email", "^(?=.{0,254}$)[\\w]+@[\\w]+(\\.[-\\w]+)*$", "Invalid Email", 0, 254);
+    EMAIL("Email", "^(?=.{0,254}$)[\\w]+@[\\w]+(\\.[-\\w]+)*$", "Invalid Email", 0, 254),
+    NAME("First Name", "^[a-zA-Z ,.'-]+$", "Invalid full name", 1, 32),
+    HOURLY_PAY("Hourly Pay", "^[0-9]{1,6}$", "Invalid input, Enter digits only", 1, 4),
+    EDUCATION("Education", "^[#.0-9a-zA-Z ,-]+$", "Invalid input, special symbols are not allowed", 1, 64),
+    ADDRESS("Address", "^[#.0-9a-zA-Z ,-]+$", "Invalid input, special symbols are not allowed", 1, 64);
 
     private final String name, pattern, description;
     private final int minLen, maxLen;
