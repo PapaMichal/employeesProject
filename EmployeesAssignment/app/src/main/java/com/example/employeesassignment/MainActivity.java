@@ -147,9 +147,6 @@ public class MainActivity extends AppCompatActivity {
         tvNavHeaderEmail.setText(sessHelper.getEmail());
     }
 
-
-
-
     @Override
     protected void onDestroy() {
         super.onDestroy();

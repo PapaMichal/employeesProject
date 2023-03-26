@@ -60,8 +60,12 @@ public class AddEmployee extends Fragment {
         return tv.getText().toString().isEmpty();
     }
 
+    private static TextInputLayout getTIL(EditText childEt) {
+        return (TextInputLayout)childEt.getParent().getParent();
+    }
+
     private static void setTextInputLayoutError(EditText childEt, String errorMsg) {
-        ((TextInputLayout)childEt.getParent().getParent()).setError(errorMsg);
+        getTIL(childEt).setError(errorMsg);
     }
 
     private boolean isAnyRequiredFieldEmpty() {
@@ -100,10 +104,10 @@ public class AddEmployee extends Fragment {
                     }
                 });
         takeImageLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
-           if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-               bitmapImage = (Bitmap)result.getData().getExtras().get("data");
-               ivImage.setImageBitmap(bitmapImage);
-           }
+            if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                bitmapImage = (Bitmap)result.getData().getExtras().get("data");
+                ivImage.setImageBitmap(bitmapImage);
+            }
         });
     }
 
@@ -125,20 +129,20 @@ public class AddEmployee extends Fragment {
         public void afterTextChanged(Editable s)  {
             switch (et.getId()) {
                 case R.id.add_emp_et_full_name:
-                    if (InputPatterns.NAME.validateAndDisplay(et)) {
+                    if (InputPatterns.NAME.validateAndDisplay(getTIL(et))) {
                         if (SqlHandler.getInstance(et.getContext()).doesEmployeeExist(et.getText().toString())) {
                             setTextInputLayoutError(et, "This employee is already registered.");
                         }
                     }
                     break;
                 case R.id.add_emp_et_hourly_pay:
-                    InputPatterns.HOURLY_PAY.validateAndDisplay(et);
+                    InputPatterns.HOURLY_PAY.validateAndDisplay(getTIL(et));
                     break;
                 case R.id.add_emp_et_address:
-                    InputPatterns.ADDRESS.validateAndDisplay(et);
+                    InputPatterns.ADDRESS.validateAndDisplay(getTIL(et));
                     break;
                 case R.id.add_emp_et_education:
-                    InputPatterns.EDUCATION.validateAndDisplay(et);
+                    InputPatterns.EDUCATION.validateAndDisplay(getTIL(et));
             }
         }
     }

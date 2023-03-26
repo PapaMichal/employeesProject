@@ -2,15 +2,13 @@
 <resources>
 
     <style name="InputTextAppearance" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
         <item name="hintAnimationEnabled">true</item>
         <item name="layout_constraintWidth_percent">0.9</item>
         <item name="errorTextAppearance">@style/ErrorTextAppearance</item>
         <item name="helperTextEnabled">true</item>
         <item name="boxStrokeColor">@color/md_theme_light_primary</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat</item>
         <item name="android:textColor">@color/md_theme_light_onBackground</item>
-        <item name="android:theme">@style/Widget.Material3.TextInputLayout.OutlinedBox</item>
     </style>
 
     <style name="SpinnerAppearance" parent="Widget.MaterialComponents.TextView">

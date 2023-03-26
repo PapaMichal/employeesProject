@@ -1,6 +1,12 @@
 package com.example.employeesassignment;
 
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.regex.Pattern;
 
@@ -8,8 +14,8 @@ public enum InputPatterns {
     USERNAME("Username", "^[a-zA-Z0-9_]{1,16}$", "Username may contain letters, numbers and underscores.", 1, 16),
     PASSWORD("Password", "^(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])[a-zA-Z0-9]{8,20}$", "Password must contain a lowercase letter, an uppercase letter, and a number", 8, 20),
     EMAIL("Email", "^(?=.{0,254}$)[\\w]+@[\\w]+(\\.[-\\w]+)*$", "Invalid Email", 0, 254),
-    NAME("First Name", "^[a-zA-Z ,.'-]+$", "Invalid full name", 1, 32),
-    HOURLY_PAY("Hourly Pay", "^[0-9]{1,6}$", "Invalid input, Enter digits only", 1, 4),
+    NAME("Full Name", "^[a-zA-Z ,.'-]+$", "Invalid full name", 1, 32),
+    HOURLY_PAY("Hourly Pay", "^[0-9]{1,4}$", "Invalid input, Enter digits only", 1, 4),
     EDUCATION("Education", "^[#.0-9a-zA-Z ,-]+$", "Invalid input, special symbols are not allowed", 1, 64),
     ADDRESS("Address", "^[#.0-9a-zA-Z ,-]+$", "Invalid input, special symbols are not allowed", 1, 64);
 
@@ -40,22 +46,34 @@ public enum InputPatterns {
         this.maxLen = maxLen;
     }
 
-    public boolean validateAndDisplay(EditText et) {
-        String input = et.getText().toString();
+    private String getErrorMessage(String input) {
         if (input.length() > 0) {
             if (isTooShort(input)) {
-                et.setError(String.format("%s too short, it may be %d-%d characters long.", name, minLen, maxLen));
+                return String.format("%s too short, it may be %d-%d characters long.", name, minLen, maxLen);
             } else if (isTooLong(input)) {
-                et.setError(String.format("%s too long. it may be %d-%d characters long.", name, minLen, maxLen));
+                return String.format("%s too long. it may be %d-%d characters long.", name, minLen, maxLen);
             } else if (!isValidInput(input)) {
-                et.setError(description);
+                return description;
             } else {          //No errors found
-                return true;
+                return null;
             }
         }
         else {               //String is empty
-            return true;
+            return null;
         }
-        return false;        //Input is invalid
+    }
+
+    public boolean validateAndDisplay(TextInputLayout textInputLayout) {
+        String input = textInputLayout.getEditText().getText().toString();
+        String errorMessage = getErrorMessage(input);
+        textInputLayout.setError(errorMessage);
+        return errorMessage == null;
+    }
+
+    public boolean validateAndDisplay(EditText editText) {
+        String input = editText.getText().toString();
+        String errorMessage = getErrorMessage(input);
+        editText.setError(errorMessage);
+        return errorMessage == null;
     }
 }

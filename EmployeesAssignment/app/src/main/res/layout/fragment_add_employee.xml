@@ -16,48 +16,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
-        <!--<View
-            android:id="@+id/add_emp_fields_bg"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@drawable/card_background"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/guideline3"
-            app:layout_constraintVertical_bias="1.0" />
-
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/add_emp_tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Add An Employee"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
-            android:textColor="@color/md_theme_light_onPrimary"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/guideline3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <TextView
-            android:id="@+id/guideline3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/add_emp_tv_title"
-            app:layout_constraintBottom_toTopOf="@+id/add_emp_ti_full_name"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:orientation="horizontal" />!-->
-
-        <!--Segment start-->
-
-
         <View
             android:id="@+id/add_emp_fields_bg"
             android:layout_width="0dp"
@@ -111,7 +69,9 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/add_emp_ti_full_name"
-            app:startIconDrawable="@drawable/ic_location30dp">
+            app:startIconDrawable="@drawable/ic_location30dp"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/add_emp_et_address"
@@ -127,7 +87,9 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/add_emp_ti_address"
-            app:startIconDrawable="@drawable/ic_education30dp">
+            app:startIconDrawable="@drawable/ic_education30dp"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/add_emp_et_education"
@@ -145,7 +107,9 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/add_emp_ti_education"
-            app:startIconDrawable="@drawable/ic_coins30dp">
+            app:startIconDrawable="@drawable/ic_coins30dp"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/add_emp_et_hourly_pay"
